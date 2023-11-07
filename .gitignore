@@ -1,0 +1,8 @@
+dataset/MNIST_data
+*.pt
+algorithm/requirements.txt
+algorithm/train.py
+.asset
+.asset_mlops
+asset_hub.egg-info
+.DS_Store

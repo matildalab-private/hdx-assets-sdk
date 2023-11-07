@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>asset_hub package &mdash; asset_hub_sdk  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="asset_hub" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            asset_hub_sdk
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">asset_hub</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">asset_hub package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-asset_hub.asset_hub_api">asset_hub.asset_hub_api module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.APILogger"><code class="docutils literal notranslate"><span class="pre">APILogger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse"><code class="docutils literal notranslate"><span class="pre">APIResponse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.AssetHubAPI"><code class="docutils literal notranslate"><span class="pre">AssetHubAPI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.Assets"><code class="docutils literal notranslate"><span class="pre">Assets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.AssetsType"><code class="docutils literal notranslate"><span class="pre">AssetsType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.FileItem"><code class="docutils literal notranslate"><span class="pre">FileItem</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-asset_hub">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">asset_hub_sdk</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">asset_hub</a></li>
+      <li class="breadcrumb-item active">asset_hub package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/asset_hub.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="asset-hub-package">
+<h1>asset_hub package<a class="headerlink" href="#asset-hub-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-asset_hub.asset_hub_api">
+<span id="asset-hub-asset-hub-api-module"></span><h2>asset_hub.asset_hub_api module<a class="headerlink" href="#module-asset_hub.asset_hub_api" title="Link to this heading"></a></h2>
+<p>AssetHubAPI Module</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">AssetHubAPI</span><span class="p">()</span>
+
+    <span class="n">assets</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">assets</span><span class="p">(</span><span class="n">assets_id</span><span class="o">=</span><span class="n">TEST_ASSETS_ID</span><span class="p">)</span>
+    <span class="n">assets_by_alias</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">assets</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="n">TEST_ASSETS_ALIAS</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">assets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">assets</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">assets</span><span class="o">.</span><span class="n">download_all</span><span class="p">(</span><span class="n">local_loc</span><span class="p">)</span>
+
+        <span class="n">train</span><span class="p">(</span><span class="n">local_loc</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+        <span class="o">...</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.APILogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">APILogger</span></span><a class="headerlink" href="#asset_hub.asset_hub_api.APILogger" title="Link to this definition"></a></dt>
+<dd><p>Logging</p>
+<p>console 로깅 출력</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.APILogger.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.APILogger.error" title="Link to this definition"></a></dt>
+<dd><p>에러 메시지 출력</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – message</p></li>
+<li><p><strong>raise_exception</strong> – 예외 발생 여부</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.APILogger.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.APILogger.info" title="Link to this definition"></a></dt>
+<dd><p>정보 메세지 출력.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> – message</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.APIResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">APIResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.APIResponse" title="Link to this definition"></a></dt>
+<dd><p>API 응답</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resp</strong> (<em>requests.Response</em>) – http 응답</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.APIResponse.success">
+<span class="sig-name descname"><span class="pre">success</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.APIResponse.success" title="Link to this definition"></a></dt>
+<dd><p>성공여부</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return bool<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">AssetHubAPI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envfile=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;asset_hub.asset_hub_api.APILogger</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI" title="Link to this definition"></a></dt>
+<dd><p>API 제어 클래스</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>envfile</strong> (<em>str</em>) – 환경파일 if envfile is None: “~/.asset” else envfile</p></li>
+<li><p><strong>logger</strong> (<a class="reference internal" href="#asset_hub.asset_hub_api.APILogger" title="asset_hub.asset_hub_api.APILogger"><em>APILogger</em></a>) – API 메시지 출력 로거</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.add_chunk">
+<span class="sig-name descname"><span class="pre">add_chunk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_commit_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_chunks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.add_chunk" title="Link to this definition"></a></dt>
+<dd><p>분할 파일 전송</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>last_commit_id</strong> – 해당 Assets 의 최신 commit_id</p></li>
+<li><p><strong>lock_token</strong> – <a class="reference internal" href="#asset_hub.asset_hub_api.AssetHubAPI.lock_acquire" title="asset_hub.asset_hub_api.AssetHubAPI.lock_acquire"><code class="xref py py-func docutils literal notranslate"><span class="pre">lock_acquire()</span></code></a>  에서 수신한 lock_token</p></li>
+<li><p><strong>chunk_number</strong> – 분할 데이터 인덱스</p></li>
+<li><p><strong>total_chunks</strong> – 총 분할 데이터 개수</p></li>
+<li><p><strong>files</strong> – 분할 파일 데이터</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return APIResponse<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.add_files">
+<span class="sig-name descname"><span class="pre">add_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_commit_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.add_files" title="Link to this definition"></a></dt>
+<dd><p>다중 파일 추가</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>last_commit_id</strong> – 해당 Assets 의 최신 commit_id</p></li>
+<li><p><strong>lock_token</strong> – <a class="reference internal" href="#asset_hub.asset_hub_api.AssetHubAPI.lock_acquire" title="asset_hub.asset_hub_api.AssetHubAPI.lock_acquire"><code class="xref py py-func docutils literal notranslate"><span class="pre">lock_acquire()</span></code></a>  에서 수신한 lock_token</p></li>
+<li><p><strong>files</strong> – 파일 목록</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return APIResponse<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.api_headers">
+<span class="sig-name descname"><span class="pre">api_headers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.api_headers" title="Link to this definition"></a></dt>
+<dd><p>api access header</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.assets">
+<span class="sig-name descname"><span class="pre">assets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.Assets" title="asset_hub.asset_hub_api.Assets"><span class="pre">Assets</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.assets" title="Link to this definition"></a></dt>
+<dd><p>Assets 인터페이스 생성</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>alias</strong> – unique name</p></li>
+<li><p><strong>revision</strong> – revision</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.get" title="Link to this definition"></a></dt>
+<dd><p>HTTP Get Request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>url</strong> – url string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.get_assets_by_alias">
+<span class="sig-name descname"><span class="pre">get_assets_by_alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.get_assets_by_alias" title="Link to this definition"></a></dt>
+<dd><p>별칭으로 assets 을 검색</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alias</strong> – 별칭</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.get_assets_by_id">
+<span class="sig-name descname"><span class="pre">get_assets_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.get_assets_by_id" title="Link to this definition"></a></dt>
+<dd><p>id 로 assets 을 검색</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>assets_id</strong> – assets_id</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.get_revision">
+<span class="sig-name descname"><span class="pre">get_revision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.get_revision" title="Link to this definition"></a></dt>
+<dd><p>에셋의 revision을 검색</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>revision</strong> – revision_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>“commit_id” : str , “tag” : str, “revision” : int, “differences” : str, “summary” : str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.lock_acquire">
+<span class="sig-name descname"><span class="pre">lock_acquire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_commit_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.lock_acquire" title="Link to this definition"></a></dt>
+<dd><p>잠금 시도</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>last_commit_id</strong> – commit_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>“lock_token”: str, “expired_at”: datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.lock_refresh">
+<span class="sig-name descname"><span class="pre">lock_refresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.lock_refresh" title="Link to this definition"></a></dt>
+<dd><p>잠금 유지</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>lock_token</strong> – <a class="reference internal" href="#asset_hub.asset_hub_api.AssetHubAPI.lock_acquire" title="asset_hub.asset_hub_api.AssetHubAPI.lock_acquire"><code class="xref py py-func docutils literal notranslate"><span class="pre">lock_acquire()</span></code></a>  에서 수신한 lock_token</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>“lock_token”: str, “expired_at”: datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.lock_release">
+<span class="sig-name descname"><span class="pre">lock_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.lock_release" title="Link to this definition"></a></dt>
+<dd><p>잠금 해제</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>lock_token</strong> – <a class="reference internal" href="#asset_hub.asset_hub_api.AssetHubAPI.lock_acquire" title="asset_hub.asset_hub_api.AssetHubAPI.lock_acquire"><code class="xref py py-func docutils literal notranslate"><span class="pre">lock_acquire()</span></code></a>  에서 수신한 lock_token</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.ls">
+<span class="sig-name descname"><span class="pre">ls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#asset_hub.asset_hub_api.Assets" title="asset_hub.asset_hub_api.Assets"><span class="pre">Assets</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.FileItem" title="asset_hub.asset_hub_api.FileItem"><span class="pre">FileItem</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.ls" title="Link to this definition"></a></dt>
+<dd><p>파일 목록 조회</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets</strong> – 대상 Assets Object</p></li>
+<li><p><strong>path</strong> – 대상 path ‘/…’</p></li>
+<li><p><strong>limit</strong> – 페이징 처리 한번에 가져올 목록 개수</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#asset_hub.asset_hub_api.FileItem" title="asset_hub.asset_hub_api.FileItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileItem</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.new_assets">
+<span class="sig-name descname"><span class="pre">new_assets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">used_assets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#asset_hub.asset_hub_api.Assets" title="asset_hub.asset_hub_api.Assets"><span class="pre">Assets</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.Assets" title="asset_hub.asset_hub_api.Assets"><span class="pre">Assets</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.new_assets" title="Link to this definition"></a></dt>
+<dd><p>Assets 생성</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_type</strong> – 에셋 타입 <a class="reference internal" href="#asset_hub.asset_hub_api.AssetsType" title="asset_hub.asset_hub_api.AssetsType"><code class="xref py py-class docutils literal notranslate"><span class="pre">AssetsType</span></code></a></p></li>
+<li><p><strong>name</strong> – 에셋 이릅</p></li>
+<li><p><strong>comment</strong> – 에셋 설명</p></li>
+<li><p><strong>used_assets</strong> – 참조 에셋</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.post" title="Link to this definition"></a></dt>
+<dd><p>HTTP Post Request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – urlstring</p></li>
+<li><p><strong>data</strong> – post data</p></li>
+<li><p><strong>files</strong> – files data</p></li>
+<li><p><strong>is_json</strong> – json 전송 여부 - file 은 multipart/form 으로 처리</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.publish">
+<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commit_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.publish" title="Link to this definition"></a></dt>
+<dd><p>에셋 배포</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>commit_id</strong> – commit_id</p></li>
+<li><p><strong>summary</strong> – 사용자 코멘트</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return APIResponse<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.publish_state">
+<span class="sig-name descname"><span class="pre">publish_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.publish_state" title="Link to this definition"></a></dt>
+<dd><p>에셋 배포 상태 확인</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets_id</strong> – assets_id</p></li>
+<li><p><strong>state_token</strong> – <a class="reference internal" href="#asset_hub.asset_hub_api.AssetHubAPI.publish" title="asset_hub.asset_hub_api.AssetHubAPI.publish"><code class="xref py py-func docutils literal notranslate"><span class="pre">publish()</span></code></a>  에서 수신한 state_token</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">Assets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#asset_hub.asset_hub_api.AssetHubAPI" title="asset_hub.asset_hub_api.AssetHubAPI"><span class="pre">AssetHubAPI</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">assets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets" title="Link to this definition"></a></dt>
+<dd><p>Assets 인터페이스</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api</strong> – api instance</p></li>
+<li><p><strong>assets</strong> – assets dict</p></li>
+<li><p><strong>revision</strong> – revision dict</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.download" title="Link to this definition"></a></dt>
+<dd><p>지정 파일 다운로드</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – 원본 경로 파일, 폴더</p></li>
+<li><p><strong>dst</strong> – 대상 경로 파일, 폴더</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.download_all">
+<span class="sig-name descname"><span class="pre">download_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_meta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.download_all" title="Link to this definition"></a></dt>
+<dd><p>전체 파일 다운로드</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dst</strong> – 대상 경로</p></li>
+<li><p><strong>enable_meta</strong> – 활성화시 dst/{uname}-{revision} 하위 디렉토리에 다운로드</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.load" title="Link to this definition"></a></dt>
+<dd><p>파일 데이터 로드</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>src</strong> – 대상 파일</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>bytes 데이터</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.lock_refresh_proc">
+<span class="sig-name descname"><span class="pre">lock_refresh_proc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.lock_refresh_proc" title="Link to this definition"></a></dt>
+<dd><p>잠금 유지</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lock_token</strong> – lock_token</p></li>
+<li><p><strong>event</strong> – 종료 여부 체크용 이벤트</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.ls">
+<span class="sig-name descname"><span class="pre">ls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.FileItem" title="asset_hub.asset_hub_api.FileItem"><span class="pre">FileItem</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.ls" title="Link to this definition"></a></dt>
+<dd><p>파일 목록 조회</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – 대상 path ‘/…’</p></li>
+<li><p><strong>limit</strong> – 페이징 처리 한번에 가져올 목록 개수</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#asset_hub.asset_hub_api.FileItem" title="asset_hub.asset_hub_api.FileItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileItem</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.publish">
+<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'sdk</span> <span class="pre">publish'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.publish" title="Link to this definition"></a></dt>
+<dd><p>에셋 배포</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>summary</strong> – 사용자 코멘트</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.send_directory">
+<span class="sig-name descname"><span class="pre">send_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.send_directory" title="Link to this definition"></a></dt>
+<dd><p>폴더 전송</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – 원본 폴더</p></li>
+<li><p><strong>dst</strong> – 대상 폴더</p></li>
+<li><p><strong>lock_token</strong> – lock_token</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.send_file">
+<span class="sig-name descname"><span class="pre">send_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.send_file" title="Link to this definition"></a></dt>
+<dd><p>파일 전송</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – 원본 파일</p></li>
+<li><p><strong>dst</strong> – 대상 파일</p></li>
+<li><p><strong>lock_token</strong> – lock_token</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.send_files">
+<span class="sig-name descname"><span class="pre">send_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.send_files" title="Link to this definition"></a></dt>
+<dd><p>파일 목록 전송</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> – 전송할 파일 이름 목록</p></li>
+<li><p><strong>src</strong> – 원본 경로</p></li>
+<li><p><strong>dst</strong> – 대상 경로</p></li>
+<li><p><strong>lock_token</strong> – lock_token</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.upload">
+<span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.upload" title="Link to this definition"></a></dt>
+<dd><p>파일 업로드</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – 원본 파일/폴더</p></li>
+<li><p><strong>dst</strong> – 대상 파일/폴더</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetsType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">AssetsType</span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetsType" title="Link to this definition"></a></dt>
+<dd><p>에셋 타입 클래스</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.FileItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">FileItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.FileItem" title="Link to this definition"></a></dt>
+<dd><p>파일 정보</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_type</strong> (<em>str</em>) – 파일 종류 ‘D’ Directory ‘F’ File</p></li>
+<li><p><strong>name</strong> – 파일 이름</p></li>
+<li><p><strong>update_date</strong> – 파일 수정일</p></li>
+<li><p><strong>size</strong> – 파일 크기</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-asset_hub">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-asset_hub" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="asset_hub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, megazone.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
