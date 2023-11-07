@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='asset_hub',
-    version='0.1.3',
+    version='1.0.0',
     packages=find_packages(include=['asset_hub', 'asset_hub.*']),
     install_requires=[
         'certifi==2023.7.22',

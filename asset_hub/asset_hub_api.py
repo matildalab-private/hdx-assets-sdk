@@ -577,7 +577,7 @@ class AssetHubAPI:
 
 
     """
-    VERSION = "0.1.3"
+    VERSION = "1.0.0"
 
     URLS = {
         # "login": "api/asset_hub/v1/auth/login",
