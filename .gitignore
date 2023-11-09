@@ -6,3 +6,4 @@ algorithm/train.py
 .asset_mlops
 asset_hub.egg-info
 .DS_Store
+*.pyc

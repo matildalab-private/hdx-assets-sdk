@@ -1,38 +1,61 @@
 """ AssetHubAPI Module
-AssetHub assets 에 대한 제어를 제공한다.
 
+AssetHub assets 에 대한 제어를 제공한다.
 
 * 사용 예제
 
 .. code-block:: python
 
-    ASSETS_ID = ...(user input)
-    TO_ASSETS_ID = ...(user input)
-    ASSETS_ALIAS = ...(user input)
+    ALGORITM_ID = ...(user input)
+    DATASET_ID = ...(user input)
+    DATASET_ALIAS = ...(user input)
+    MODEL_ID = ...(user input)
     local_loc = ...(user input)
 
     try:
-        api = AssetHubAPI()
+        api = AssetHubAPI() # or AssetHubAPI('.asset') # 설정 파일 지정 
+
+        algorithm = api.assets(ALGORITM_ID)
+        if algorithm is None:
+            return
+
+        # enable_meta -> {uname}-{revision} 하위 디렉토리에 다운로드
+        algorithm.download_all('./', enable_meta=False)
+
+        # 알고리즘 실행 환경 재현
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "./requirements.txt"])
 
         # 에셋 로드
-        assets = api.assets(assets_id=ASSETS_ID) # or api.assets(alias=ASSETS_ALIAS)
+        assets = api.assets(assets_id=DATASET_ID) # or api.assets(alias=DATASET_ALIAS) # 별칭으로 접근
         if assets is not None:
             # 파일 목록 조회
             for x in assets.ls('/'):
                 print(x)
 
-            # 에셋 파일 다운로드
-            assets.download_all(local_loc) # or assets.download(remote_src, local_dst)
+            # 에셋 파일 전체 다운로드
+            assets.download_all(local_loc)
+
+            # MNIST_data 데이터셋 기준 다음과 같이 다운로드
+            # remote 파일 -> local 파일
+            # dataset.download('MNIST_data/MNIST/raw/t10k-images-idx3-ubyte',
+            #                  './t10k-images-idx3-ubyte')
+            #
+            # remote 폴더 -> local 폴더
+            # dataset.download('MNIST_data/MNIST/raw/',
+            #                  './raw/')
+            #
+            # 전체를 현재 디렉토리에
+            # dataset.download_all('./)
 
             # 사용자 정의 로직 실행
             train(local_loc, ...)
 
             # 업르드및 배포용 에셋 로드
-            to_assets = api.assets(assets_id=TO_ASSETS_ID)
+            model = api.assets(assets_id=MODEL_ID)
             '''
             or
             # 업르드및 배포용 에셋 생성
-            to_assets = api.new_assets(AssetsType.MODEL,
+            model = api.new_assets(AssetsType.MODEL,
                                 "model name",
                                 "mode description",
                                 used_assets=[assets])
@@ -40,9 +63,10 @@ AssetHub assets 에 대한 제어를 제공한다.
             local_src = ... # ex) './example.py'
             remote_dst = ... # ex) '/example.py'
 
-            # 업로드 및 배포
-            if to_assets.upload(local_src, remote_dst):
-                to_assets.publish()
+            # 업로드
+            if model.upload(local_src, remote_dst):
+                # 배포
+                model.publish()
 
     except Exception as e:
         print(e)
@@ -577,7 +601,7 @@ class AssetHubAPI:
 
 
     """
-    VERSION = "1.0.0"
+    VERSION = "1.0.1"
 
     URLS = {
         # "login": "api/asset_hub/v1/auth/login",
