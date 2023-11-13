@@ -86,7 +86,7 @@ import tqdm
 from colorama import Fore, Style
 from urllib3.exceptions import InsecureRequestWarning
 
-
+from asset_hub.cache import AssetFileCache, DEFAULT_CACHE_LIMIT
 
 
 class AssetsType:
@@ -263,6 +263,63 @@ class Assets:
                         time.sleep(0.0003)
                 return stream.getvalue()
         return None
+
+    def get_file_cached(self, src: str) -> Optional[str]:
+        """ 캐시를 이용한 파일 가져오기
+
+        :param src: 원본 경로 파일
+
+        :return : 캐싱 파일 이름(없을시 다운로드)
+
+        """
+        return self.api.cache.get_file(self, src)
+
+    def download_file(self, src: str, dst: str, with_info: bool) -> bool:
+        """ 지정 파일 다운로드
+
+        :param src: 원본 경로 파일
+
+        :param dst: 대상 경로 파일
+
+        :param with_info: 정보 표시 여부
+
+        """
+        try:
+            if with_info:
+                self.api.logger.info(f"Download file {src} -> {dst}")
+
+            url = AssetHubAPI.URLS["blob"].format(
+                self.assets['id'],
+                self.revision['commit_id'],
+                src)
+            with requests.get(
+                    f'{self.api.host}/{url}',
+                    headers=self.api.api_headers(),
+                    stream=True,
+                    verify=True) as resp:
+                if resp.headers.get('content-type') == 'application/json':
+                    api_resp = APIResponse(resp)
+                    self.api.logger.error(f"{src} Download Error {api_resp.message} {api_resp.errors}")
+                else:
+                    dirname = os.path.dirname(dst)
+                    if len(dirname) > 0:
+                        os.makedirs(dirname, exist_ok=True)
+
+                    total_length = int(resp.headers.get('Content-Length'))
+                    with open(dst, 'wb') as f:
+                        if with_info:
+                            with tqdm.tqdm(total=total_length) as pbar:
+                                for chunk in resp.iter_content(chunk_size=8192):
+                                    f.write(chunk)
+                                    pbar.update(len(chunk))
+                                    time.sleep(0.0003)
+                        else:
+                            for chunk in resp.iter_content(chunk_size=8192):
+                                f.write(chunk)
+        except Exception as e:
+            self.api.logger.error(f"Download Failed {e}", False)
+            return False
+        return True
 
     def download(self, src: str, dst: str) -> bool:
         """ 지정 파일 다운로드
@@ -601,7 +658,7 @@ class AssetHubAPI:
 
 
     """
-    VERSION = "1.0.1"
+    VERSION = "1.0.2"
 
     URLS = {
         # "login": "api/asset_hub/v1/auth/login",
@@ -624,7 +681,11 @@ class AssetHubAPI:
 
     CHUNK_SIZE = 10 * 1024 * 1024
 
-    def __init__(self, envfile=None, logger=APILogger()):
+    def __init__(self,
+                 envfile: Optional[str] = None,
+                 cache_dir: Optional[str] = None,
+                 cache_limit: int = DEFAULT_CACHE_LIMIT,
+                 logger=APILogger()):
         """Constructor
         """
         requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
@@ -647,11 +708,16 @@ class AssetHubAPI:
                 if key == "API_USER":
                     self.api_user = value.strip()
             if (
-                self.host is None or
-                self.api_key is None or
-                self.api_user is None
+                    self.host is None or
+                    self.api_key is None or
+                    self.api_user is None
             ):
                 logger.error(f"Invalid EnvFiles")
+
+        self.cache = AssetFileCache(
+            limit=cache_limit,
+            cache_dir=cache_dir
+        )
         self.logger = logger
 
     def api_headers(self) -> dict:

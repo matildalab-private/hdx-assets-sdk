@@ -19,6 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="asset_hub.torchbinding package" href="asset_hub.torchbinding.html" />
     <link rel="prev" title="asset_hub" href="modules.html" /> 
 </head>
 
@@ -53,6 +54,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.Assets"><code class="docutils literal notranslate"><span class="pre">Assets</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.AssetsType"><code class="docutils literal notranslate"><span class="pre">AssetsType</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#asset_hub.asset_hub_api.FileItem"><code class="docutils literal notranslate"><span class="pre">FileItem</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-asset_hub.cache">asset_hub.cache module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.cache.AssetFileCache"><code class="docutils literal notranslate"><span class="pre">AssetFileCache</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asset_hub.cache.get_directory_size"><code class="docutils literal notranslate"><span class="pre">get_directory_size()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="asset_hub.torchbinding.html">asset_hub.torchbinding package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -229,7 +239,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">AssetHubAPI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envfile=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;asset_hub.asset_hub_api.APILogger</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.asset_hub_api.</span></span><span class="sig-name descname"><span class="pre">AssetHubAPI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">envfile:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_limit:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1073741824</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;asset_hub.asset_hub_api.APILogger</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>API 제어 클래스</p>
 <dl class="field-list simple">
@@ -252,7 +262,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.VERSION">
-<span class="sig-name descname"><span class="pre">VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1.0.1'</span></em><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.VERSION" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1.0.2'</span></em><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.VERSION" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -448,7 +458,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asset_hub.asset_hub_api.AssetHubAPI.post">
-<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.post" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#asset_hub.asset_hub_api.APIResponse" title="asset_hub.asset_hub_api.APIResponse"><span class="pre">APIResponse</span></a></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.AssetHubAPI.post" title="Link to this definition"></a></dt>
 <dd><p>HTTP Post Request</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -541,6 +551,33 @@
 <dd class="field-even"><p></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.download_file">
+<span class="sig-name descname"><span class="pre">download_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.download_file" title="Link to this definition"></a></dt>
+<dd><p>지정 파일 다운로드</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – 원본 경로 파일</p></li>
+<li><p><strong>dst</strong> – 대상 경로 파일</p></li>
+<li><p><strong>with_info</strong> – 정보 표시 여부</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.asset_hub_api.Assets.get_file_cached">
+<span class="sig-name descname"><span class="pre">get_file_cached</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.asset_hub_api.Assets.get_file_cached" title="Link to this definition"></a></dt>
+<dd><p>캐시를 이용한 파일 가져오기</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>src</strong> – 원본 경로 파일</p>
+</dd>
+</dl>
+<p>:return : 캐싱 파일 이름(없을시 다운로드)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -724,6 +761,46 @@
 </dd></dl>
 
 </section>
+<section id="module-asset_hub.cache">
+<span id="asset-hub-cache-module"></span><h2>asset_hub.cache module<a class="headerlink" href="#module-asset_hub.cache" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="asset_hub.cache.AssetFileCache">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asset_hub.cache.</span></span><span class="sig-name descname"><span class="pre">AssetFileCache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.cache.AssetFileCache" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>허브에 파일 요청시 디스크 캐시를 사용</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.cache.AssetFileCache.clear_cache">
+<span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cur_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.cache.AssetFileCache.clear_cache" title="Link to this definition"></a></dt>
+<dd><p>캐시 limit 초과시 오래된 파일들 제거</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asset_hub.cache.AssetFileCache.get_file">
+<span class="sig-name descname"><span class="pre">get_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#asset_hub.cache.AssetFileCache.get_file" title="Link to this definition"></a></dt>
+<dd><p>지정한 파일이 캐시에 존재하면 해당 파일 이름을 리턴, 없을시 캐시로 파일을 다운로드후 해당 이름을 리턴</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="asset_hub.cache.get_directory_size">
+<span class="sig-prename descclassname"><span class="pre">asset_hub.cache.</span></span><span class="sig-name descname"><span class="pre">get_directory_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asset_hub.cache.get_directory_size" title="Link to this definition"></a></dt>
+<dd><p>지정 디렉토리의 용량확인</p>
+</dd></dl>
+
+</section>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asset_hub.torchbinding.html">asset_hub.torchbinding package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="asset_hub.torchbinding.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset_hub.torchbinding.html#module-asset_hub.torchbinding">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
@@ -734,6 +811,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="modules.html" class="btn btn-neutral float-left" title="asset_hub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="asset_hub.torchbinding.html" class="btn btn-neutral float-right" title="asset_hub.torchbinding package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

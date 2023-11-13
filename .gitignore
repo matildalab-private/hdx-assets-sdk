@@ -7,3 +7,4 @@ algorithm/train.py
 asset_hub.egg-info
 .DS_Store
 *.pyc
+.idea
