@@ -203,11 +203,11 @@ class Assets:
         """
         return self.api.ls(self, path, limit)
 
-    def load(self, src: str) -> Optional[bytes]:
+    def load(self, src: str, with_info: bool = True) -> Optional[io.BytesIO]:
         """파일 데이터 로드
 
         :param src: 대상 파일
-        :return: bytes 데이터
+        :return: io.BytesIO
         """
         try:
             paths = [x for x in src.split('/') if len(x) > 0]
@@ -222,7 +222,7 @@ class Assets:
                     if f.name == lpath:
                         match = True
                         if f.file_type == 'F':
-                            return self._load_file(src)
+                            return self._load_file(src, with_info)
                         else:
                             return None
 
@@ -235,11 +235,11 @@ class Assets:
 
         return None
 
-    def _load_file(self, src: str) -> Optional[bytes]:
+    def _load_file(self, src: str, with_info: bool) -> Optional[io.BytesIO]:
         """파일 데이터 로드 통신 구현
 
         :param src: 대상 파일
-        :return: bytes 데이터
+        :return: io.BytesIO
         """
         url = AssetHubAPI.URLS["blob"].format(
             self.assets['id'],
@@ -256,12 +256,18 @@ class Assets:
             else:
                 total_length = int(resp.headers.get('Content-Length'))
                 stream = io.BytesIO()
-                with tqdm.tqdm(total=total_length) as pbar:
+                if with_info:
+                    with tqdm.tqdm(total=total_length) as pbar:
+                        for chunk in resp.iter_content(chunk_size=8192):
+                            stream.write(chunk)
+                            pbar.update(len(chunk))
+                            time.sleep(0.0003)
+                else:
                     for chunk in resp.iter_content(chunk_size=8192):
                         stream.write(chunk)
-                        pbar.update(len(chunk))
-                        time.sleep(0.0003)
-                return stream.getvalue()
+
+                stream.seek(0, os.SEEK_SET)
+                return stream
         return None
 
     def get_file_cached(self, src: str) -> Optional[str]:

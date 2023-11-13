@@ -1,4 +1,5 @@
 import functools
+import io
 import os
 import os.path
 from typing import Any, Callable, cast, Dict, List, Optional, Tuple, Union
@@ -147,7 +148,7 @@ class DatasetFolder(VisionDataset):
             self,
             assets: Assets,
             root: str,
-            loader: Callable[[str], Any],
+            loader: Callable[[io.BytesIO], Any],
             extensions: Optional[Tuple[str, ...]] = None,
             transform: Optional[Callable] = None,
             target_transform: Optional[Callable] = None,
@@ -256,38 +257,43 @@ class DatasetFolder(VisionDataset):
 IMG_EXTENSIONS = (".jpg", ".jpeg", ".png", ".ppm", ".bmp", ".pgm", ".tif", ".tiff", ".webp")
 
 
-def pil_loader(path: str) -> Image.Image:
+def pil_loader(byteio: io.BytesIO) -> Image.Image:
     # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
-    with open(path, "rb") as f:
-        img = Image.open(f)
-        return img.convert("RGB")
+    return Image.open(byteio).convert("RGB")
 
 
 # TODO: specify the return type
-def accimage_loader(path: str) -> Any:
+def accimage_loader(byteio: io.BytesIO) -> Any:
     import accimage
 
     try:
-        return accimage.Image(path)
+        return accimage.Image(byteio)
     except OSError:
         # Potentially a decoding problem, fall back to PIL.Image
-        return pil_loader(path)
+        return pil_loader(byteio)
 
 
-def default_loader(path: str) -> Any:
+def default_loader(byteio: io.BytesIO) -> Any:
     from torchvision import get_image_backend
 
     if get_image_backend() == "accimage":
-        return accimage_loader(path)
+        return accimage_loader(byteio)
     else:
-        return pil_loader(path)
+        return pil_loader(byteio)
 
 
-def asset_hub_loader(assets: Assets, loader_impl: Callable, path: str) -> Any:
-    file_name = assets.get_file_cached(path)
-    if file_name is None:
-        return None
-    return loader_impl(file_name)
+def asset_hub_loader(assets: Assets,
+                     use_cache: bool,
+                     loader_impl: Callable[[io.BytesIO], Any],
+                     path: str) -> Any:
+    if use_cache:
+        filename = assets.get_file_cached(path)
+        if filename is None:
+            return None
+        with open(filename, "rb") as fd:
+            return loader_impl(io.BytesIO(fd.read()))
+
+    return loader_impl(assets.load(path, with_info=False))
 
 
 class ImageFolder(DatasetFolder):
@@ -310,7 +316,7 @@ class ImageFolder(DatasetFolder):
             and returns a transformed version. E.g, ``transforms.RandomCrop``
         target_transform (callable, optional): A function/transform that takes in the
             target and transforms it.
-        loader (callable,  optional): A function to load an image given its path.
+        loader (callable,  optional): A function to load an image given its bytes.
         is_valid_file (callable, optional): A function that takes path of an Image file
             and check if the file is a valid file (used to check of corrupt files)
 
@@ -326,10 +332,11 @@ class ImageFolder(DatasetFolder):
             root: str,
             transform: Optional[Callable] = None,
             target_transform: Optional[Callable] = None,
-            loader: Callable[[str], Any] = default_loader,
+            loader: Callable[[io.BytesIO], Any] = default_loader,
             is_valid_file: Optional[Callable[[str], bool]] = None,
+            asset_hub_use_cache: bool = False,
     ):
-        wrapped_loader = functools.partial(asset_hub_loader, assets, loader)
+        wrapped_loader = functools.partial(asset_hub_loader, assets, asset_hub_use_cache, loader)
         super().__init__(
             assets,
             root,
