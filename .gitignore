@@ -8,3 +8,4 @@ asset_hub.egg-info
 .DS_Store
 *.pyc
 .idea
+build

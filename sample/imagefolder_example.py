@@ -10,6 +10,7 @@ from torch import optim, nn
 from torch.optim import lr_scheduler
 from torch.utils.tensorboard import SummaryWriter
 
+from asset_hub.cache import AssetMemoryCache
 from asset_hub.torchbinding.folder import ImageFolder as AssetHubImageFolder
 from asset_hub.asset_hub_api import AssetHubAPI
 

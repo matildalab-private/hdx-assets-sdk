@@ -79,14 +79,14 @@ import os
 import time
 from math import floor, ceil
 from threading import Event, Thread
-from typing import Optional
+from typing import Optional, Any
 
 import requests
 import tqdm
 from colorama import Fore, Style
 from urllib3.exceptions import InsecureRequestWarning
 
-from asset_hub.cache import AssetFileCache, DEFAULT_CACHE_LIMIT
+from asset_hub.cache import AssetMemoryCache, AssetNoCache
 
 
 class AssetsType:
@@ -270,12 +270,12 @@ class Assets:
                 return stream
         return None
 
-    def get_file_cached(self, src: str) -> Optional[str]:
+    def get_file_cached(self, src: str) -> Optional[io.BytesIO]:
         """ 캐시를 이용한 파일 가져오기
 
         :param src: 원본 경로 파일
 
-        :return : 캐싱 파일 이름(없을시 다운로드)
+        :return : 캐싱 파일 데이터
 
         """
         return self.api.cache.get_file(self, src)
@@ -689,8 +689,6 @@ class AssetHubAPI:
 
     def __init__(self,
                  envfile: Optional[str] = None,
-                 cache_dir: Optional[str] = None,
-                 cache_limit: int = DEFAULT_CACHE_LIMIT,
                  logger=APILogger()):
         """Constructor
         """
@@ -720,11 +718,11 @@ class AssetHubAPI:
             ):
                 logger.error(f"Invalid EnvFiles")
 
-        self.cache = AssetFileCache(
-            limit=cache_limit,
-            cache_dir=cache_dir
-        )
+        self.set_cache_policy(AssetNoCache())
         self.logger = logger
+
+    def set_cache_policy(self, cache):
+        self.cache = cache
 
     def api_headers(self) -> dict:
         """api access header

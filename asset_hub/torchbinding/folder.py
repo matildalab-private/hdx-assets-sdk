@@ -283,17 +283,12 @@ def default_loader(byteio: io.BytesIO) -> Any:
 
 
 def asset_hub_loader(assets: Assets,
-                     use_cache: bool,
                      loader_impl: Callable[[io.BytesIO], Any],
                      path: str) -> Any:
-    if use_cache:
-        filename = assets.get_file_cached(path)
-        if filename is None:
-            return None
-        with open(filename, "rb") as fd:
-            return loader_impl(io.BytesIO(fd.read()))
-
-    return loader_impl(assets.load(path, with_info=False))
+    byteio = assets.get_file_cached(path)
+    if byteio is None:
+        assets.api.logger.error(f"{path} is None", raise_exception=True)
+    return loader_impl(byteio)
 
 
 class ImageFolder(DatasetFolder):
@@ -333,10 +328,9 @@ class ImageFolder(DatasetFolder):
             transform: Optional[Callable] = None,
             target_transform: Optional[Callable] = None,
             loader: Callable[[io.BytesIO], Any] = default_loader,
-            is_valid_file: Optional[Callable[[str], bool]] = None,
-            asset_hub_use_cache: bool = False,
+            is_valid_file: Optional[Callable[[str], bool]] = None
     ):
-        wrapped_loader = functools.partial(asset_hub_loader, assets, asset_hub_use_cache, loader)
+        wrapped_loader = functools.partial(asset_hub_loader, assets, loader)
         super().__init__(
             assets,
             root,
