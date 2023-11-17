@@ -77,6 +77,7 @@ from __future__ import annotations
 import io
 import os
 import time
+from enum import IntEnum
 from math import floor, ceil
 from threading import Event, Thread
 from typing import Optional, Any
@@ -96,6 +97,11 @@ class AssetsType:
     MODEL = 'model'
     ALGORITHM = 'algorithm'
     PIPELINE = 'pipeline'
+
+
+class AssetsCreateSource(IntEnum):
+    PORTAL = 0
+    SDK = 1
 
 
 class FileItem:
@@ -840,7 +846,8 @@ class AssetHubAPI:
                 "projects": [],
                 "permission_read": 0,
                 "permission_write": 0,
-                "permission_clone": 0
+                "permission_clone": 0,
+                "source": AssetsCreateSource.SDK.value
             }
         )
         if not api_resp.success():
