@@ -90,6 +90,13 @@ from urllib3.exceptions import InsecureRequestWarning
 from asset_hub.cache import AssetMemoryCache, AssetNoCache
 
 
+def common_path_join(*args):
+    path = os.path.join(*args)
+    if os.path.sep != '/':
+        path = path.replace(os.path.sep, '/')
+    return path
+
+
 class AssetsType:
     """에셋 타입 클래스
     """
@@ -222,7 +229,7 @@ class Assets:
             else:
                 lpath = paths[-1]
                 paths = paths[:-1]
-                path = os.path.join(*paths) if len(paths) > 0 else ''
+                path = common_path_join(*paths) if len(paths) > 0 else ''
                 match = False
                 for f in self.ls(path):
                     if f.name == lpath:
@@ -348,7 +355,7 @@ class Assets:
             else:
                 lpath = paths[-1]
                 paths = paths[:-1]
-                path = os.path.join(*paths) if len(paths) > 0 else ''
+                path = common_path_join(*paths) if len(paths) > 0 else ''
                 match = False
                 for f in self.ls(path):
                     if f.name == lpath:
@@ -361,7 +368,7 @@ class Assets:
                 if match is False:
                     self.api.logger.error(f"Download Failed {src} not exist", False)
                     return False
-
+            self.api.action_download(self.assets['id'])
         except Exception as e:
             self.api.logger.error(f"Download Failed {e}", False)
             return False
@@ -378,7 +385,7 @@ class Assets:
             uname = self.assets['uname']
             if uname is None or len(uname) <= 0:
                 uname = str(self.assets['id'])
-            dst = os.path.join(dst, f"{uname}-{self.revision['revision']}")
+            dst = common_path_join(dst, f"{uname}-{self.revision['revision']}")
         return self.download('', dst)
 
     def upload(self, src: str, dst: str) -> bool:
@@ -550,7 +557,7 @@ class Assets:
             for file in files:
                 if file.startswith('.') or file.endswith('.dvc'):
                     continue
-                full_path = os.path.join(root, file)
+                full_path = common_path_join(root, file)
                 size = os.path.getsize(full_path)
                 if size > AssetHubAPI.CHUNK_SIZE:
                     chunkfiles.append(full_path)
@@ -611,10 +618,10 @@ class Assets:
             if not os.path.exists(dst):
                 os.makedirs(dst, exist_ok=True)
             if x.file_type == "D":
-                os.makedirs(os.path.join(dst, x.name), exist_ok=True)
-                folders.append((os.path.join(src, x.name), os.path.join(dst, x.name)))
+                os.makedirs(common_path_join(dst, x.name), exist_ok=True)
+                folders.append((common_path_join(src, x.name), common_path_join(dst, x.name)))
             else:
-                self._get_file(src, x, os.path.join(dst, x.name))
+                self._get_file(src, x, common_path_join(dst, x.name))
         for s, d in folders:
             self._get_folder(s, d)
 
@@ -626,7 +633,7 @@ class Assets:
         :param dst: 대상
         :return:
         """
-        src = os.path.join(src_path, src_file_info.name)
+        src = common_path_join(src_path, src_file_info.name)
         if os.path.exists(dst) and os.path.getsize(dst) == src_file_info.size:
             self.api.logger.info(f"Download file {src} -> {dst} already exist")
             return
@@ -670,7 +677,7 @@ class AssetHubAPI:
 
 
     """
-    VERSION = "1.0.2"
+    VERSION = "1.0.3"
 
     URLS = {
         # "login": "api/asset_hub/v1/auth/login",
@@ -689,6 +696,7 @@ class AssetHubAPI:
         "publish": "asset_hub/v1/assets/{0}/{1}/publish",
         "publish_state": "asset_hub/v1/assets/{0}/publish_state",
         "set_used_assets": "asset_hub/v1/assets/{0}/ext_info/USED_ASSETS",
+        "action_download": "asset_hub/v1/assets/{0}/set?action=download",
     }
 
     CHUNK_SIZE = 10 * 1024 * 1024
@@ -700,7 +708,7 @@ class AssetHubAPI:
         """
         requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
         if envfile is None:
-            envfile = os.path.join(os.path.expanduser('~'), '.asset')
+            envfile = common_path_join(os.path.expanduser('~'), '.asset')
         if not os.path.exists(envfile):
             logger.error(f"{envfile} is not exist")
         self.host = None
@@ -918,7 +926,7 @@ class AssetHubAPI:
         :return: :py:class:`FileItem`
         """
         paths = [x for x in path.split('/') if len(x) > 0]
-        path = os.path.join(*paths) if len(paths) > 0 else ''
+        path = common_path_join(*paths) if len(paths) > 0 else ''
         if len(path) > 1:
             path += '/'
         page = 1
@@ -1064,3 +1072,7 @@ class AssetHubAPI:
             data={
                 "state_token": state_token
             })
+
+    def action_download(self, assets_id: int):
+        return self.post(
+            AssetHubAPI.URLS["action_download"].format(assets_id), data={})
