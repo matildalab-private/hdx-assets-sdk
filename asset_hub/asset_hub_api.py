@@ -831,7 +831,7 @@ class AssetHubAPI:
                    assets_type: str,
                    name: str,
                    comment: str,
-                   used_assets: Optional[list[Assets]] = None
+                   used_assets: Optional[list[Assets]] = None,
                    alias : str = None
                    ) -> Optional[Assets]:
         """Assets 생성
