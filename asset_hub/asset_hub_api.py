@@ -832,6 +832,7 @@ class AssetHubAPI:
                    name: str,
                    comment: str,
                    used_assets: Optional[list[Assets]] = None
+                   alias : str = None
                    ) -> Optional[Assets]:
         """Assets 생성
 
@@ -857,6 +858,9 @@ class AssetHubAPI:
                 "permission_clone": 0,
                 "source": AssetsCreateSource.SDK.value
             }
+
+            if aisas != None:
+                data["alias"] = alias
         )
         if not api_resp.success():
             self.logger.error(f"NewModel Failed {api_resp.errors}")
