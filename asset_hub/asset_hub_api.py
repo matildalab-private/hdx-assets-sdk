@@ -856,12 +856,11 @@ class AssetHubAPI:
                 "permission_read": 0,
                 "permission_write": 0,
                 "permission_clone": 0,
-                "source": AssetsCreateSource.SDK.value
+                "source": AssetsCreateSource.SDK.value,
+                "alias" : alias
             }
-
-            if aisas != None:
-                data["alias"] = alias
         )
+        
         if not api_resp.success():
             self.logger.error(f"NewModel Failed {api_resp.errors}")
             return None
