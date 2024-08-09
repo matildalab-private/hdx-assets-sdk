@@ -857,7 +857,7 @@ class AssetHubAPI:
                 "permission_write": 0,
                 "permission_clone": 0,
                 "source": AssetsCreateSource.SDK.value,
-                "alias" : alias
+                "uname" : alias
             }
         )
         
