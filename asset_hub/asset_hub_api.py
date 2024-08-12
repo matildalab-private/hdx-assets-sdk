@@ -293,7 +293,7 @@ class Assets:
         """
         return self.api.cache.get_file(self, src)
 
-    def download_file(self, src: str, dst: str, with_info: bool) -> bool:
+    def download_file(self, src: str, dst: str, with_info: bool, commid_id: int = None) -> bool:
         """ 지정 파일 다운로드
 
         :param src: 원본 경로 파일
@@ -307,10 +307,16 @@ class Assets:
             if with_info:
                 self.api.logger.info(f"Download file {src} -> {dst}")
 
-            url = AssetHubAPI.URLS["blob"].format(
-                self.assets['id'],
-                self.revision['commit_id'],
-                src)
+            if commit_id != None:
+                url = AssetHubAPI.URLS["blob"].format(
+                    self.assets['id'],
+                    commit_id,
+                    src)
+            else:
+                url = AssetHubAPI.URLS["blob"].format(
+                    self.assets['id'],
+                    self.revision['commit_id'],
+                    src)
             with requests.get(
                     f'{self.api.host}/{url}',
                     headers=self.api.api_headers(),
