@@ -293,7 +293,7 @@ class Assets:
         """
         return self.api.cache.get_file(self, src)
 
-    def download_file(self, src: str, dst: str, with_info: bool, commid_id: int = None) -> bool:
+    def download_file(self, src: str, dst: str, with_info: bool, commit_id: int = None) -> bool:
         """ 지정 파일 다운로드
 
         :param src: 원본 경로 파일
