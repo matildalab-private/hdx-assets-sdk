@@ -917,7 +917,7 @@ class AssetHubAPI:
         self.logger.error(f"{api_resp.message, api_resp.errors}")
         return None
 
-    def ls(self, assets: Assets, path: str, limit: int) -> FileItem:
+    def ls(self, assets: Assets, path: str, limit: int, commit_id: int = None) -> FileItem:
         """파일 목록 조회
 
         :param assets: 대상 Assets Object
@@ -934,12 +934,20 @@ class AssetHubAPI:
             path += '/'
         page = 1
         while True:
-            api_resp = self.get(
-                AssetHubAPI.URLS["assets_ls"].format(assets.assets['id'],
-                                                     assets.revision['commit_id'],
-                                                     path,
-                                                     limit,
-                                                     page))
+            if commit_id != None:
+                api_resp = self.get(
+                    AssetHubAPI.URLS["assets_ls"].format(assets.assets['id'],
+                                                         commit_id,
+                                                         path,
+                                                         limit,
+                                                         page))
+            else:    
+                api_resp = self.get(
+                    AssetHubAPI.URLS["assets_ls"].format(assets.assets['id'],
+                                                         assets.revision['commit_id'],
+                                                         path,
+                                                         limit,
+                                                         page))
             if not api_resp.success():
                 self.logger.error(f"Can't get list {api_resp.errors}")
                 return
