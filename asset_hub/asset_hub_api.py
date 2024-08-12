@@ -205,7 +205,7 @@ class Assets:
         self.revision = revision
         self.last_commit_id = self.assets['last_commit_id']
 
-    def ls(self, path: str, limit: int = 1000) -> FileItem:
+    def ls(self, path: str, limit: int = 1000, commit_id: int = None) -> FileItem:
         """파일 목록 조회
 
         :param path: 대상 path '/...'
@@ -214,7 +214,7 @@ class Assets:
 
         :return: :py:class:`FileItem`
         """
-        return self.api.ls(self, path, limit)
+        return self.api.ls(self, path, limit, commit_id)
 
     def load(self, src: str, with_info: bool = True) -> Optional[io.BytesIO]:
         """파일 데이터 로드
