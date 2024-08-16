@@ -394,7 +394,7 @@ class Assets:
             dst = common_path_join(dst, f"{uname}-{self.revision['revision']}")
         return self.download('', dst)
 
-    def upload(self, src: str, dst: str) -> bool:
+    def upload(self, src: str, dst: str, commit_id: int = None) -> bool:
         """파일 업로드
 
         :param src: 원본 파일/폴더
@@ -412,7 +412,7 @@ class Assets:
         if len(dirname) == 0:
             dirname = '/'
         self.api.logger.info("Check Target")
-        for x in self.ls(dirname):
+        for x in self.ls(dirname, commit_id):
             if x.name == basename:
                 if x.file_type == 'D':
                     dst_isdir = True
@@ -513,6 +513,10 @@ class Assets:
         size = os.path.getsize(src)
         if size < AssetHubAPI.CHUNK_SIZE:
             multiple_files = [(dirname, (basename, open(src, 'rb'),)), ]
+            print(dirname)
+            print(" : ")
+            print(basename)
+            print("\n")
             api_resp = self.api.add_files(self.assets['id'],
                                           self.last_commit_id,
                                           lock_token,
