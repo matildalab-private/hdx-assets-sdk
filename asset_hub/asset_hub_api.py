@@ -412,12 +412,17 @@ class Assets:
         if len(dirname) == 0:
             dirname = '/'
         self.api.logger.info("Check Target")
-        for x in self.ls(dirname, commit_id):
-            if x.name == basename:
-                if x.file_type == 'D':
-                    dst_isdir = True
-                else:
-                    dst_isdir = False
+
+        source_exists = True
+        try:
+            for x in self.ls(dirname, commit_id):
+                if x.name == basename:
+                    if x.file_type == 'D':
+                        dst_isdir = True
+                    else:
+                        dst_isdir = False
+        except:
+            source_exists = False
 
         if src_isdir and dst_isdir is False:
             self.api.logger.error("cant' push dir to file")
@@ -429,14 +434,22 @@ class Assets:
 
         lock_token = None
         try:
-            lock_token_data = self.api.lock_acquire(self.assets['id'], self.last_commit_id)
+            if commit_id == None:
+                lock_token_data = self.api.lock_acquire(self.assets['id'], self.last_commit_id)
+            else:
+                lock_token_data = self.api.lock_acquire(self.assets['id'], commit_id)
+
             if lock_token_data is None:
                 return False
+
             lock_token = lock_token_data['lock_token']
 
             event = Event()
             thread = Thread(target=self.lock_refresh_proc, args=(lock_token, event,))
             thread.start()
+
+            #if source_exists == False:
+            #    self.send_file(dirname, dirname, lock_token)
 
             if src_isdir:
                 self.send_directory(src, dst, lock_token)
