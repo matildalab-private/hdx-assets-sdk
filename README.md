@@ -4,8 +4,44 @@ AssetHub의 데이터셋, 모델, 알고리즘, 파이프라인 에셋을 Python
 
 ## 설치
 
+### 개발 중 (소스 수정 즉시 반영)
+
 ```bash
-pip install -r requirements.txt
+pip install -e .
+```
+
+### 배포용 설치
+
+```bash
+pip install .
+```
+
+### 패키지 빌드
+
+```bash
+pip install build
+python -m build
+```
+
+`dist/` 폴더에 배포 파일이 생성됩니다.
+
+```
+dist/
+  asset_hub-1.0.3-py3-none-any.whl
+  asset_hub-1.0.3.tar.gz
+```
+
+### 다른 프로젝트에서 설치
+
+```bash
+# 빌드된 whl 파일로 설치
+pip install dist/asset_hub-1.0.3-py3-none-any.whl
+
+# git 레포에서 직접 설치
+pip install git+https://github.com/yourorg/hdx-assets-sdk.git
+
+# 로컬 경로에서 설치
+pip install /path/to/hdx-assets-sdk/
 ```
 
 ## 환경 설정
