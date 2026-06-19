@@ -171,8 +171,15 @@ class APIResponse:
     def __init__(self, resp: requests.Response):
         """Constructor
         """
-        resp_json = resp.json()
         self.resp = resp
+        try:
+            resp_json = resp.json()
+        except Exception:
+            raise Exception(
+                f"HTTP {resp.status_code} - 서버가 JSON 응답을 반환하지 않았습니다. "
+                f"HOST, API_KEY, API_USER 설정을 확인하세요.\n"
+                f"응답 내용: {resp.text[:200] if resp.text else '(빈 응답)'}"
+            )
         self.status = resp_json['status']
         self.message = resp_json['message']
         self.errors = resp_json['errors']
